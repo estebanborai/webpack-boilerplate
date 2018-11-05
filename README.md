@@ -10,6 +10,8 @@ yarn && yarn install
 # using npm
 npm i
 ```
+#### Requirements
+- [Node.js](https://nodejs.org/)
 
 #### Scripts
 Script | Usage
