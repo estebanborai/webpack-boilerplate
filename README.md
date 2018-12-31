@@ -10,6 +10,13 @@ yarn && yarn install
 # using npm
 npm i
 ```
+
+### Run with Docker
+```bash
+# clone the repo
+docker-compose up
+```
+
 #### Requirements
 - [Node.js](https://nodejs.org/)
 
