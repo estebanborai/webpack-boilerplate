@@ -27,13 +27,19 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader'
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[ext]',
+            }
           }
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-		    loader: "file-loader"
+        loader: 'file-loader',
+        options: {
+          name: 'assets/[name].[ext]'
+        }
       }
     ]
   },
