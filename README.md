@@ -19,6 +19,9 @@ docker-compose up
 
 #### Requirements
 - [Node.js](https://nodejs.org/)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Editor Config](https://marketplace.visualstudio.com/items?itemName=chrisdias.vscodeEditorConfig)
+
 
 #### Scripts
 Script | Usage
