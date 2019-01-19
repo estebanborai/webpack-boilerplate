@@ -2,7 +2,8 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin();
+const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -55,7 +56,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: 'src/index.html'
 		}),
-		new HotModuleReplacementPlugin()
+    new HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['bundle'])
 	],
 	resolve: {
 		extensions: ['.js']
