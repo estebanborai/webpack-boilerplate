@@ -3,7 +3,7 @@
 
 ### Usage
 ```bash
-git clone https://github.com/estebanborai/webpack-boilerplate.git
+git clone https://github.com/gitpullsh/webpack-boilerplate.git
 cd webpack-boilerplate
 # using yarn
 yarn && yarn install
