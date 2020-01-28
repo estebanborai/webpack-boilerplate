@@ -1,11 +1,16 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const MODE = {
+  DEV: 'development',
+  PROD: 'production'
+}
+
 module.exports = (env, args) => {
-  const isDev = args.mode === 'development';
-  const isProd = args.mode === 'production';
+  const isDev = args.mode === MODE.DEV;
+  const isProd = args.mode === MODE.PROD;
 
   const config = {
     module: {}
@@ -20,7 +25,7 @@ module.exports = (env, args) => {
 
   config.module.rules = [
     {
-      test: /\.js$/,
+      test: /\.jsx$/,
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader'
@@ -35,18 +40,22 @@ module.exports = (env, args) => {
     },
     {
       test: /\.scss$/,
-      use: [
-        "style-loader",
+      use: isDev ? [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ] : [
+        'style-loader',
         MiniCssExtractPlugin.loader,
-        "css-loader",
-        "sass-loader"
+        'css-loader',
+        'sass-loader'
       ]
     }
   ];
 
   config.plugins = [
     new MiniCssExtractPlugin({
-      filename: "style.[hash].css"
+      filename: 'style.[hash].css'
     }),
     new HtmlWebpackPlugin({
       inject: false,
@@ -91,6 +100,10 @@ module.exports = (env, args) => {
   if (isProd) {
     config.plugins.push(new CleanWebpackPlugin());
   }
+
+  config.resolve = {
+    extensions: ['.js']
+  };
 
   return config;
 }
