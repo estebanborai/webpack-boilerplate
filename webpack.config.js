@@ -16,6 +16,12 @@ module.exports = (env, args) => {
     module: {}
   };
 
+  if (isDev) {
+    // If you are using TypeScript remember to set
+    // source-map: true in your tsconfig.json
+    config.devtool = 'source-map';
+  }
+
   config.entry = './src/main.js';
 
   config.output = {
