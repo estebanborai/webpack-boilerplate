@@ -3,6 +3,8 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -62,9 +64,10 @@ const config = merge(commonConfig, {
         }
       }
     }
-  }
+  },
   plugins: [
     new webpack.EnvironmentPlugin(environment),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: 'css/[id].[hash].css'
@@ -76,6 +79,9 @@ const config = merge(commonConfig, {
       threshold: 10240,
       minRatio: 0.8
     }),
+    new CopyPlugin([
+      { from: helpers.root('public', 'manifest.json') }
+    ]),
     new webpack.HashedModuleIdsPlugin()
   ]
 });

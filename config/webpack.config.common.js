@@ -1,13 +1,12 @@
 'use strict';
 
-const HtmlPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const helpers = require('./helpers');
 const isDev = process.env.NODE_ENV === 'development';
 
 const config = {
   entry: {
-    polyfill: '@babel/polyfill',
     main: helpers.root('src', 'main')
   },
   resolve: {
@@ -58,9 +57,14 @@ const config = {
     ]
   },
   plugins: [
-    new HtmlPlugin({
+    new HtmlWebpackPlugin({
+      title: 'webpack-boilerplate | Update this from the config/webpack.config.common.js',
       template: 'public/index.ejs',
-      chunksSortMode: 'dependency'
+      favicon: 'public/favicon.png',
+      meta: {
+        'description': 'Your project description',
+        'theme-color': '#dac8b3'
+      }
     })
   ]
 };
