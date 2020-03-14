@@ -17,7 +17,7 @@ const config = merge(commonConfig, {
   mode: 'production',
   output: {
     path: helpers.root('dist'),
-    publicPath: '/',
+    publicPath: './',
     filename: 'js/[hash].js',
     chunkFilename: 'js/[id].[hash].chunk.js'
   },
