@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.config.common');
@@ -35,12 +35,6 @@ const config = merge(commonConfig, {
             }
           ]
         }
-      }),
-      new UglifyJSPlugin({
-        cache: true,
-        parallel: true,
-        // Only for staging
-        sourceMap: !isProd
       })
     ],
     splitChunks: {
@@ -66,6 +60,12 @@ const config = merge(commonConfig, {
     }
   },
   plugins: [
+    new TerserPlugin({
+      parallel: true,
+      terserOptions: {
+        ecma: 6,
+      },
+    }),
     new webpack.EnvironmentPlugin(environment),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
