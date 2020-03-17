@@ -5,7 +5,7 @@ const merge = require('webpack-merge');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.config.common');
-const environment = require('./env/dev.env');
+const Dotenv = require('dotenv-webpack');
 
 const config = merge(commonConfig, {
   mode: 'development',
@@ -23,7 +23,9 @@ const config = merge(commonConfig, {
     }
   },
   plugins: [
-    new webpack.EnvironmentPlugin(environment),
+    new Dotenv({
+      path: helpers.root('config', 'env', '.env.dev')
+    }),
     new webpack.HashedModuleIdsPlugin(),
     new FriendlyErrorsPlugin()
   ],

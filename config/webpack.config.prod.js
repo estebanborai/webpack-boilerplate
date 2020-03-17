@@ -11,7 +11,8 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.config.common');
 const isProd = process.env.NODE_ENV === 'production';
-const environment = isProd ? require('./env/prod.env') : require('./env/staging.env');
+const Dotenv = require('dotenv-webpack');
+const evironmentPath = isProd ? helpers.root('config', 'env', '.env.prod') : helpers.root('config', 'env', '.env.staging');
 
 const config = merge(commonConfig, {
   mode: 'production',
@@ -66,7 +67,9 @@ const config = merge(commonConfig, {
         ecma: 6,
       },
     }),
-    new webpack.EnvironmentPlugin(environment),
+    new Dotenv({
+      path: evironmentPath
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
