@@ -2,7 +2,7 @@
   "name": "webpack-boilerplate",
   "version": "0.0.0",
   "description": "No description provided",
-  "main": "./src/main.ts",
+  "main": "./src/main.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --progress",
     "staging": "cross-env NODE_ENV=staging webpack",
